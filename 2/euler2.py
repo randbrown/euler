@@ -2,6 +2,8 @@ import sys
 import functools
 
 ######### approach 1 (crude, inefficient)
+# We calculate the Nth fibonacci number, and sum it (if even)
+
 # cache results makes it much faster
 @functools.lru_cache(maxsize=None)
 def fib(n):
@@ -30,15 +32,16 @@ answer = fibsum0(arg)
 print("sum (using simple approach) = {}".format(answer))
 
 ########## approach 2, much more efficient
+# rather than recursion, just while loop and keep a running total
 def fibsum(n):
     g=0
     f=1
     sum = 0
     ##### THIS IS NOT RIGHT
     while(f<n):
-        print("fib number: %d" % f)
+        # print("fib number: %d" % f)
         if(f%2 == 0):
-            print("adding even number: %d" % f)
+            # print("adding even number: %d" % f)
             sum += f
         temp = f
         f += g
