@@ -29,10 +29,8 @@ def satisifiesCondition(n):
                 return False
     return True
     
-sum = 0
-startAt = 1
-#maxValue = 100000000
-maxValue = 1000
+sum = 1 #special case for 1, since we won't be including it in the range loop below
+maxValue = 100000000
 
 if len(argv) > 1:
     maxValue = int(argv[1])
@@ -43,7 +41,8 @@ end_sieve = time.time()
 print("finished seive up to %d, elapsed time = %f" % (maxValue, end_sieve - start_sieve))
 
 start_test = time.time()
-for i in range(startAt, maxValue+1):
+# Cade pointed out that the matching numbers will always be 4n+2, so use that in our range loop
+for i in range(2, maxValue+1, 4):
     # print("testing %d" % (i))
     sat = satisifiesCondition(i)
     if(sat):
