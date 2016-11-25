@@ -2,23 +2,8 @@ import sys
 from sys import argv
 import math
 import time
-import functools
 
 start = time.time()
-
-@functools.lru_cache(maxsize=None)
-def getDivisors(n):
-    half = int(n/2)
-    divs = [];
-    for i in range(1,half+1):
-        if n%i == 0:
-            divs.append(i)
-    divs.append(n)
-    return divs
-
-@functools.lru_cache(maxsize=None)
-def isPrime(n):
-    return sieve_array[n]
 
 def sieve(n):
     # allocate an extra one to handle the d+n/d max value
@@ -35,11 +20,13 @@ def satisifiesCondition(n):
     if not sieve_array[n+1]:
         return False
 
-    divs = getDivisors(n)
-    for d in divs:
-        x = d + n//d
-        if sieve_array[x] == False:
-            return False
+    sq = int(math.sqrt(n))
+
+    for i in range(1,sq+1):
+        if n%i == 0:
+            x = i + n//i
+            if sieve_array[x] == False:
+                return False
     return True
     
 sum = 0
@@ -60,8 +47,8 @@ for i in range(startAt, maxValue+1):
     # print("testing %d" % (i))
     sat = satisifiesCondition(i)
     if(sat):
-        print("{} satisfies condition".format(i))
+        # print("{} satisfies condition".format(i))
         sum += i
     
 end_test = time.time()
-print("Sum = %d, elapsed time = %f" % (sum, end_test - start_test))
+print("Sum = %d, test time = %f, total elapsed time = %f" % (sum, end_test - start_test, end_test - start))
