@@ -10,8 +10,8 @@ public class Euler27 {
         int aMax = -1;
         int bMax = -1;
 
-        for (int a = start; a < end; a++) {
-            for (int b = start; b < end; b++) {
+        for (int a = start+1; a < end; a++) {
+            for (int b = start; b <= end; b++) {
                 int n = 0;
                 while (isPrime(evalFunction(a, b, n))) {
 
@@ -34,7 +34,7 @@ public class Euler27 {
 
     private static boolean isPrime(Integer n) {
         n = Math.abs(n);
-        int lim = n / 2;
+        int lim = (int)Math.sqrt(n / 2);
         for (int idx = 2; idx < lim; idx++) {
             if (n % idx == 0) {
                 return false;
