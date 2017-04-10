@@ -1,12 +1,12 @@
 import sys
-import functools32
+import functools32 as functools
 # note requires pip install functools32
 
 ######### approach 1 (crude, inefficient)
 # We calculate the Nth fibonacci number, and sum it (if even)
 
 # cache results makes it much faster
-@functools32.lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def fib(n):
     if(n <= 1):
         return 1
